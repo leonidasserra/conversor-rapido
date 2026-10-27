@@ -12,6 +12,9 @@ const formulario = document.getElementById("form-conversao");
 const campoValor = document.getElementById("valor");
 const campoTipo = document.getElementById("tipo");
 const areaResultado = document.getElementById("resultado");
+const listaHistorico = document.getElementById("lista-historico");
+
+const CHAVE_HISTORICO = "conversor-rapido:historico";
 
 function lerEntrada() {
   return campoValor.value.trim().replace(",", ".");
@@ -42,6 +45,25 @@ function mostrarResultado(texto) {
   areaResultado.textContent = texto;
 }
 
+function carregarHistorico() {
+  return JSON.parse(localStorage.getItem(CHAVE_HISTORICO) || "[]");
+}
+
+function salvarHistorico(texto) {
+  const historico = carregarHistorico();
+  historico.unshift(texto);
+  localStorage.setItem(CHAVE_HISTORICO, JSON.stringify(historico));
+}
+
+function renderizarHistorico() {
+  listaHistorico.replaceChildren();
+  for (const texto of carregarHistorico()) {
+    const item = document.createElement("li");
+    item.textContent = texto;
+    listaHistorico.appendChild(item);
+  }
+}
+
 formulario.addEventListener("submit", function (evento) {
   // Impede o envio do formulário, que recarregaria a página
   evento.preventDefault();
@@ -55,5 +77,10 @@ formulario.addEventListener("submit", function (evento) {
   const valor = Number(texto);
   const tipo = campoTipo.value;
   const resultado = converter(valor, tipo);
-  mostrarResultado(formatarResultado(valor, tipo, resultado));
+  const textoResultado = formatarResultado(valor, tipo, resultado);
+  mostrarResultado(textoResultado);
+  salvarHistorico(textoResultado);
+  renderizarHistorico();
 });
+
+renderizarHistorico();
