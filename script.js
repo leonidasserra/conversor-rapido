@@ -1,13 +1,18 @@
+const conversoes = {
+  "c-f": function (valor) { return valor * 9 / 5 + 32; }
+};
+
 const formulario = document.getElementById("form-conversao");
 const campoValor = document.getElementById("valor");
+const campoTipo = document.getElementById("tipo");
 const areaResultado = document.getElementById("resultado");
 
 function lerEntrada() {
   return Number(campoValor.value);
 }
 
-function converter(celsius) {
-  return celsius * 9 / 5 + 32;
+function converter(valor, tipo) {
+  return conversoes[tipo](valor);
 }
 
 function mostrarResultado(texto) {
@@ -19,6 +24,6 @@ formulario.addEventListener("submit", function (evento) {
   evento.preventDefault();
 
   const valor = lerEntrada();
-  const resultado = converter(valor);
+  const resultado = converter(valor, campoTipo.value);
   mostrarResultado(valor + " °C = " + resultado + " °F");
 });
