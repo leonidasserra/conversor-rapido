@@ -35,7 +35,7 @@ Escolha uma das opções:
 
 ## Uso de IA
 
-O projeto foi desenvolvido em etapas, alternando entre etapas implementadas pelo Claude (Anthropic), assistente de IA, e etapas implementadas por mim. Vale destacar que todos os commits com co-autoria do Claude foram revisados por mim, aluns inclusive com multiplas edições e correções. Os commits feitos com a ajuda do Claude têm a linha `Co-Authored-By: Claude` na mensagem. Nas minhas etapas, o Claude apenas revisou o `git diff`, sem editar os arquivos.
+O projeto foi desenvolvido em etapas, alternando entre etapas implementadas pelo Claude (Anthropic), assistente de IA, e etapas implementadas por mim. Vale destacar que todos os commits com co-autoria do Claude foram revisados por mim, alguns inclusive com múltiplas edições e correções. Os commits feitos com a ajuda do Claude têm a linha `Co-Authored-By: Claude` na mensagem. Nas minhas etapas, o Claude apenas revisou o `git diff`, sem editar os arquivos.
 
 **Implementadas pelo Claude:**
 
@@ -58,10 +58,16 @@ O projeto foi desenvolvido em etapas, alternando entre etapas implementadas pelo
 5. Revisão da seção "Uso de IA" e seção "Aba Rede"
 6. Formatação do resultado com unidades e duas casas decimais
 
+## Aba Rede
 
-## Demonstração
+![Página do Conversor Rápido com a aba Rede do DevTools aberta](img/app-aba-rede.png)
 
-O print mostra a requisição que carregou a página: o navegador fez um GET para http://127.0.0.1:5500/index.html (servidor local do Live Server) e recebeu status 200, ou seja, o arquivo foi entregue com sucesso. Como o app segue a trilha C (sem API), não há outras requisições externas: a conversão é feita no próprio JavaScript e o histórico fica no localStorage do navegador.
+Ao abrir a página, o navegador faz a requisição abaixo para carregar o `index.html`:
 
-![alt text](image.png)
+- **Método:** `GET`
+- **URL:** `http://127.0.0.1:5500/index.html` (servidor local do Live Server)
+- **Status:** `200 OK`, ou seja, o arquivo foi entregue com sucesso
 
+![Detalhe da requisição GET de index.html com status 200 OK](img/detalhe-get-index.png)
+
+As outras requisições (`style.css` e `script.js`) também retornam 200. Como o app segue a trilha C (sem API), não há chamadas a APIs externas: a conversão é feita no próprio JavaScript e o histórico fica no `localStorage` do navegador.
