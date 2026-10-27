@@ -14,7 +14,12 @@ const campoTipo = document.getElementById("tipo");
 const areaResultado = document.getElementById("resultado");
 
 function lerEntrada() {
-  return Number(campoValor.value);
+  return campoValor.value.trim();
+}
+
+function validarValor(texto) {
+  // Number("") vale 0, por isso a entrada vazia é verificada à parte
+  return texto !== "" && Number.isFinite(Number(texto));
 }
 
 function converter(valor, tipo) {
@@ -29,7 +34,13 @@ formulario.addEventListener("submit", function (evento) {
   // Impede o envio do formulário, que recarregaria a página
   evento.preventDefault();
 
-  const valor = lerEntrada();
+  const texto = lerEntrada();
+  if (!validarValor(texto)) {
+    mostrarResultado("Digite um número válido");
+    return;
+  }
+
+  const valor = Number(texto);
   const resultado = converter(valor, campoTipo.value);
   mostrarResultado("Resultado: " + resultado);
 });
