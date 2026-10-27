@@ -13,6 +13,7 @@ const campoValor = document.getElementById("valor");
 const campoTipo = document.getElementById("tipo");
 const areaResultado = document.getElementById("resultado");
 const listaHistorico = document.getElementById("lista-historico");
+const botaoLimpar = document.getElementById("limpar-historico");
 
 const CHAVE_HISTORICO = "conversor-rapido:historico";
 const LIMITE_HISTORICO = 5;
@@ -70,6 +71,13 @@ function renderizarHistorico() {
     listaHistorico.appendChild(item);
   }
 }
+
+function limparHistorico() {
+  localStorage.removeItem(CHAVE_HISTORICO);
+  renderizarHistorico();
+}
+
+botaoLimpar.addEventListener("click", limparHistorico);
 
 formulario.addEventListener("submit", function (evento) {
   // Impede o envio do formulário, que recarregaria a página
