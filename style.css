@@ -43,3 +43,32 @@ button {
 button:hover {
   background: #155ab6;
 }
+
+section {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+}
+
+#form-conversao button {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  section {
+    margin-bottom: 0;
+  }
+
+  #form-conversao button {
+    width: auto;
+  }
+}
