@@ -37,7 +37,7 @@ Escolha uma das opções:
 
 O projeto foi desenvolvido em etapas, alternando entre etapas implementadas pelo Claude (Anthropic), assistente de IA, e etapas implementadas por mim. Vale destacar que todos os commits com co-autoria do Claude foram revisados por mim, alguns inclusive com múltiplas edições e correções. Os commits feitos com a ajuda do Claude têm a linha `Co-Authored-By: Claude` na mensagem. Nas minhas etapas, o Claude apenas revisou o `git diff`, sem editar os arquivos.
 
-**Implementadas pelo Claude:**
+**Implementadas com o auxílio do Claude:**
 
 1. Estrutura inicial do `index.html`
 2. Conversão de Celsius para Fahrenheit (`script.js`)
