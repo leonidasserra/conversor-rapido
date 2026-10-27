@@ -14,7 +14,7 @@ const campoTipo = document.getElementById("tipo");
 const areaResultado = document.getElementById("resultado");
 
 function lerEntrada() {
-  return campoValor.value.trim();
+  return campoValor.value.trim().replace(",", ".");
 }
 
 function validarValor(texto) {
