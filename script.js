@@ -15,6 +15,7 @@ const areaResultado = document.getElementById("resultado");
 const listaHistorico = document.getElementById("lista-historico");
 
 const CHAVE_HISTORICO = "conversor-rapido:historico";
+const LIMITE_HISTORICO = 5;
 
 function lerEntrada() {
   return campoValor.value.trim().replace(",", ".");
@@ -46,13 +47,19 @@ function mostrarResultado(texto) {
 }
 
 function carregarHistorico() {
-  return JSON.parse(localStorage.getItem(CHAVE_HISTORICO) || "[]");
+  // Se o dado salvo estiver corrompido ou não for uma lista, recomeça vazio
+  try {
+    const historico = JSON.parse(localStorage.getItem(CHAVE_HISTORICO) || "[]");
+    return Array.isArray(historico) ? historico.slice(0, LIMITE_HISTORICO) : [];
+  } catch (erro) {
+    return [];
+  }
 }
 
 function salvarHistorico(texto) {
   const historico = carregarHistorico();
   historico.unshift(texto);
-  localStorage.setItem(CHAVE_HISTORICO, JSON.stringify(historico));
+  localStorage.setItem(CHAVE_HISTORICO, JSON.stringify(historico.slice(0, LIMITE_HISTORICO)));
 }
 
 function renderizarHistorico() {
