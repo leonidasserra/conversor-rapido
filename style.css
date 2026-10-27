@@ -44,6 +44,13 @@ button:hover {
   background: #155ab6;
 }
 
+input:focus-visible,
+select:focus-visible,
+button:focus-visible {
+  outline: 3px solid #0b3d91;
+  outline-offset: 2px;
+}
+
 section {
   margin-bottom: 1rem;
   padding: 1rem;
