@@ -1,5 +1,11 @@
 const conversoes = {
-  "c-f": function (valor) { return valor * 9 / 5 + 32; }
+  "c-f": function (valor) { return valor * 9 / 5 + 32; },
+  "f-c": function (valor) { return (valor - 32) * 5 / 9; },
+  // Fatores exatos: 1 mi = 1,609344 km e 1 lb = 0,45359237 kg
+  "km-mi": function (valor) { return valor / 1.609344; },
+  "mi-km": function (valor) { return valor * 1.609344; },
+  "kg-lb": function (valor) { return valor / 0.45359237; },
+  "lb-kg": function (valor) { return valor * 0.45359237; }
 };
 
 const formulario = document.getElementById("form-conversao");
@@ -25,5 +31,5 @@ formulario.addEventListener("submit", function (evento) {
 
   const valor = lerEntrada();
   const resultado = converter(valor, campoTipo.value);
-  mostrarResultado(valor + " °C = " + resultado + " °F");
+  mostrarResultado("Resultado: " + resultado);
 });
